@@ -81,6 +81,14 @@ class ReportChartUtils:
         save_path: Annotated[str, "File path where the plot should be saved"],
     ) -> str:
         """Plot the stock performance of a company compared to the S&P 500 over the past year."""
+        # chinese
+        '''
+        ```python
+            """
+            绘制公司在过去一年中与标普500指数相比的股票表现。
+            """
+        ```
+        '''
         if isinstance(filing_date, str):
             filing_date = datetime.strptime(filing_date, "%Y-%m-%d")
 
@@ -158,6 +166,13 @@ class ReportChartUtils:
         save_path: Annotated[str, "File path where the plot should be saved"] = None,
     ) -> str:
         """Plot the PE ratio and EPS performance of a company over the past n years."""
+        '''
+        ```python
+        """
+        绘制公司过去n年中的市盈率和每股收益表现。
+        """
+        ```
+        '''
         if isinstance(filing_date, str):
             filing_date = datetime.strptime(filing_date, "%Y-%m-%d")
 

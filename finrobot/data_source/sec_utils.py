@@ -10,6 +10,37 @@ from ..data_source import FMPUtils
 CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache")
 PDF_GENERATOR_API = "https://api.sec-api.io/filing-reader"
 
+#https://sec-api.io/profile
+#Your API Key
+#25c0b59d130524d10db409f4ded2b4fef2ce1a6b471ebd524f32a0a55dedd44a
+'''
+| Product                                    | Usage | Subscriptions |
+|--------------------------------------------|-------|---------------|
+| [Query API](Docs)                          | 0/100 | [Free Trial]  |
+| [Stream API](Docs)                         | no    |               |
+| [Full-Text Search API](Docs)               | 0/100 |               |
+| [XBRL-to-JSON Converter API](Docs)         | 0/100 |               |
+| [10-K/10-Q/8-K Extractor API](Docs)        | 0/100 |               |
+| [Filing Render & Download API](Docs)       | 0/100 |               |
+| [CIK, Ticker, CUSIP Mapping API](Docs)     | 0/100 |               |
+| [Executive Compensation API](Docs)         | 0/100 |               |
+| [Directors & Board Members Data](Docs)     | 0/100 |               |
+| [Insider Trading Data API](Docs)           | 0/100 |               |
+| [Form 8-K Structured Data API](Docs)       | 0/100 |               |
+| [Form S-1/424B4 API](Docs)                 | 0/100 |               |
+| [Form D API](Docs)                         | 0/100 |               |
+| [Form 13D/13G API](Docs)                   | 0/100 |               |
+| [Form N-PORT API](Docs)                    | 0/100 |               |
+| [Investment Advisor & ADV API](Docs)       | 0/100 |               |
+| [Float (Outstanding Shares) API](Docs)     | 0/100 |               |
+| [Company Subsidiary API](Docs)             | 0/100 |               |
+| [AAER Database](Docs)                      | 0/100 |               |
+| [SRO Filings Database](Docs)               | 0/100 |               |
+
+
+
+'''
+
 
 def init_sec_api(func):
     @wraps(func)

@@ -30,6 +30,13 @@ class ReportAnalysisUtils:
         Retrieve the income statement for the given ticker symbol with the related section of its 10-K report.
         Then return with an instruction on how to analyze the income statement.
         """
+        # chinese
+
+        """
+        获取给定股票代码的损益表及其10-K报告的相关部分。
+        然后返回一份关于如何分析损益表的说明。
+        """
+
         # Retrieve the income statement
         income_stmt = YFinanceUtils.get_income_stmt(ticker_symbol)
         df_string = "Income statement:\n" + income_stmt.to_string().strip()
@@ -49,6 +56,20 @@ class ReportAnalysisUtils:
             respective subheadings with specific discussion and strong data support.
             """
         )
+        '''
+        # 分析说明
+        instruction = dedent(
+            """
+            对公司的本财年损益表进行全面分析。
+            首先从整体收入记录入手，包括同比或环比比较，并细分收入来源以识别主要贡献者和趋势。
+            检查销售成本，查找潜在的成本控制问题。
+            审查毛利润率、营业利润率和净利润率，以评估成本效率、运营效益和整体盈利能力。
+            分析每股收益以了解投资者的观点。
+            将这些指标与历史数据和行业或竞争对手基准进行比较，以识别增长模式、盈利趋势和运营挑战。
+            输出应为公司的财务健康状况的战略概述，用不到130个字的单段总结先前分析的4-5个关键点，在各自的副标题下进行具体讨论并提供强有力的数据支持。
+            """
+        )
+        '''
 
         # Retrieve the related section from the 10-K report
         section_text = SECUtils.get_10k_section(ticker_symbol, fyear, 7)
@@ -68,6 +89,15 @@ class ReportAnalysisUtils:
         Retrieve the balance sheet for the given ticker symbol with the related section of its 10-K report.
         Then return with an instruction on how to analyze the balance sheet.
         """
+        # chinese
+        '''
+        ```python
+        """
+        获取给定股票代码的资产负债表及其10-K报告的相关部分。
+        然后返回一份关于如何分析资产负债表的说明。
+        """
+        ``` 
+        '''
         balance_sheet = YFinanceUtils.get_balance_sheet(ticker_symbol)
         df_string = "Balance sheet:\n" + balance_sheet.to_string().strip()
 
@@ -82,6 +112,18 @@ class ReportAnalysisUtils:
             providing insights into its fiscal health and future prospects in a single paragraph. Less than 130 words.
             """
         )
+        '''
+        ```python
+        instruction = dedent(
+            """
+            深入详细审查公司最近一个财年的资产负债表，明确资产、负债和股东权益的结构，以解读公司的财务稳定性和运营效率。
+            重点评估通过流动资产与流动负债的流动性，通过长期债务比率的偿付能力，以及股本状况以评估长期投资潜力。
+            将这些指标与前几年的数据进行对比，以突出财务趋势、改进或恶化情况。
+            最后对公司的财务杠杆、资产管理和资本结构进行战略评估，在单段文字中提供对其财务健康状况和未来前景的见解。字数少于130字。
+            """
+        )
+        ```
+        '''
 
         section_text = SECUtils.get_10k_section(ticker_symbol, fyear, 7)
         prompt = combine_prompt(instruction, section_text, df_string)
@@ -97,6 +139,11 @@ class ReportAnalysisUtils:
         Retrieve the cash flow statement for the given ticker symbol with the related section of its 10-K report.
         Then return with an instruction on how to analyze the cash flow statement.
         """
+        #chinese
+        """
+        获取给定股票代码的现金流量表及其10-K报告的相关部分。
+        然后返回一份关于如何分析现金流量表的说明。
+        """
         cash_flow = YFinanceUtils.get_cash_flow(ticker_symbol)
         df_string = "Cash flow statement:\n" + cash_flow.to_string().strip()
 
@@ -111,6 +158,18 @@ class ReportAnalysisUtils:
             Less than 130 words.
             """
         )
+        '''
+                ```python
+        instruction = dedent(
+            """
+            深入全面评估公司最近一个财年的现金流量，重点关注经营、投资和融资活动的现金流入和流出。
+            检查经营活动的现金流以评估核心业务的盈利能力，仔细分析投资活动以了解资本支出和投资情况，审查融资活动以了解债务、股权变动和股息政策。
+            将这些现金流动与之前的时期进行比较，以辨别趋势、可持续性和流动性风险。
+            最后在单段文字中提供对公司现金管理效益、流动性状况和未来增长或财务挑战潜力的分析。字数少于130字。
+            """
+        )
+        ```
+        '''
 
         section_text = SECUtils.get_10k_section(ticker_symbol, fyear, 7)
         prompt = combine_prompt(instruction, section_text, df_string)
@@ -126,6 +185,15 @@ class ReportAnalysisUtils:
         Retrieve the income statement and the related section of its 10-K report for the given ticker symbol.
         Then return with an instruction on how to create a segment analysis.
         """
+        #chinese
+        '''
+        ```python
+        """
+        获取给定股票代码的损益表及其10-K报告的相关部分。
+        然后返回一份关于如何创建细分分析的说明。
+        """
+        ```
+        '''
         income_stmt = YFinanceUtils.get_income_stmt(ticker_symbol)
         df_string = (
             "Income statement (Segment Analysis):\n" + income_stmt.to_string().strip()
@@ -144,6 +212,24 @@ class ReportAnalysisUtils:
             reliance on evidence-backed information. For each segment, the output should be one single paragraph within 150 words.
             """
         )
+        '''
+        ```python
+        instruction = dedent(
+            """
+            确定公司的业务部门，并使用管理层讨论与分析（MD&A）和损益表创建细分分析，按部门划分并提供清晰的标题。
+            使用具体数据说明收入和净利润，并计算变化情况。
+            详细说明战略合作伙伴关系及其影响，包括公司或组织的详细信息。
+            描述产品创新及其对收入增长的影响。
+            量化市场份额及其变化，或说明市场地位及其变化。
+            分析市场动态和利润挑战，注意国家政策变化的影响。
+            包括成本方面的内容，详细说明运营成本、创新投资和渠道扩展费用等。
+            支持每个陈述的证据，保持每个细分分析简明扼要，不超过60字，准确来源信息。
+            对于每个细分，将最重要的发现整合成一个清晰、简明的段落，排除不太重要或描述模糊的方面，确保清晰性和基于证据的信息。
+            对于每个细分，输出应为一个150字以内的段落。
+            """
+        )
+        ```
+        '''
         section_text = SECUtils.get_10k_section(ticker_symbol, fyear, 7)
         prompt = combine_prompt(instruction, section_text, df_string)
         save_to_file(prompt, save_path)
@@ -162,6 +248,15 @@ class ReportAnalysisUtils:
         """
         # income_stmt_analysis = analyze_income_stmt(ticker_symbol)
         # segment_analysis = analyze_segment_stmt(ticker_symbol)
+        #chinese
+        '''
+        ```python
+        """
+        获取给定股票代码的损益表和细分分析。
+        然后返回一份关于如何将这些分析综合成一个连贯段落的说明。
+        """
+        ```
+        '''
 
         instruction = dedent(
             f"""
@@ -177,6 +272,25 @@ class ReportAnalysisUtils:
             The total output should be less than 160 words.
             """
         )
+        '''
+       ```python
+        instruction = dedent(
+            f"""
+            损益表分析: {income_stmt_analysis},
+            细分分析: {segment_analysis},
+            将深入的损益表分析和细分分析的结果综合成一个连贯的段落。
+            该段落应基于事实和数据驱动。
+            首先，展示和评估总体收入和利润状况，注意显著的趋势和变化。
+            其次，检查各业务部门的表现，重点是它们的收入和利润变化、收入贡献和市场动态。
+            对于前两部分未涵盖的信息，识别并整合与运营、潜在风险以及增长和稳定的战略机会相关的关键发现。
+            对每一部分，结合历史数据进行比较，并提供相关的事实、指标或数据作为证据。
+            整个综合应以连续的段落形式呈现，不使用项目符号。
+            对每个关键点使用副标题和编号。
+            总输出应少于160字。
+            """
+        )
+        ```
+        '''
 
         section_text = SECUtils.get_10k_section(ticker_symbol, fyear, 7)
         prompt = combine_prompt(instruction, section_text, "")
@@ -192,6 +306,14 @@ class ReportAnalysisUtils:
         Retrieve the risk factors for the given ticker symbol with the related section of its 10-K report.
         Then return with an instruction on how to summarize the top 3 key risks of the company.
         """
+        '''
+        ```python
+        """
+        获取给定股票代码的风险因素及其10-K报告的相关部分。
+        然后返回一份关于如何总结公司前三大关键风险的说明。
+        """
+        ```
+        '''
         company_name = YFinanceUtils.get_stock_info(ticker_symbol)["shortName"]
         risk_factors = SECUtils.get_10k_section(ticker_symbol, fyear, "1A")
         section_text = (
@@ -203,6 +325,11 @@ class ReportAnalysisUtils:
             + "\n\n"
         )
         instruction = "According to the given information, summarize the top 3 key risks of the company. Less than 100 words."
+        '''
+        ```python
+        instruction = "根据给定的信息，总结公司前三大关键风险。字数少于100字。"
+        ```
+        '''
         prompt = combine_prompt(instruction, section_text, "")
         save_to_file(prompt, save_path)
         return f"instruction & resources saved to {save_path}"
@@ -216,6 +343,15 @@ class ReportAnalysisUtils:
         Retrieve the business summary and related section of its 10-K report for the given ticker symbol.
         Then return with an instruction on how to describe the performance highlights per business of the company.
         """
+        #chinese
+        '''
+        ```python
+        """
+        获取给定股票代码的业务概要及其10-K报告的相关部分。
+        然后返回一份关于如何描述公司各业务表现亮点的说明。
+        """
+        ```
+        '''
         business_summary = SECUtils.get_10k_section(ticker_symbol, fyear, 1)
         section_7 = SECUtils.get_10k_section(ticker_symbol, fyear, 7)
         section_text = (
@@ -232,6 +368,18 @@ class ReportAnalysisUtils:
             Less than 130 words.
             """
         )
+        '''
+        ```python
+        instruction = dedent(
+            """
+            根据给定的信息，描述公司各业务的表现亮点。
+            每个业务描述应包含一句总结和一句解释。
+            字数少于130字。
+            """
+        )
+        ```
+        '''
+
         prompt = combine_prompt(instruction, section_text, "")
         save_to_file(prompt, save_path)
         return f"instruction & resources saved to {save_path}"
@@ -245,6 +393,15 @@ class ReportAnalysisUtils:
         Retrieve the company description and related sections of its 10-K report for the given ticker symbol.
         Then return with an instruction on how to describe the company's industry, strengths, trends, and strategic initiatives.
         """
+        #chinese
+        '''
+        ```python
+        """
+        获取给定股票代码的公司描述及其10-K报告的相关部分。
+        然后返回一份关于如何描述公司的行业、优势、趋势和战略举措的说明。
+        """
+        ```
+        '''
         company_name = YFinanceUtils.get_stock_info(ticker_symbol).get(
             "shortName", "N/A"
         )
@@ -270,6 +427,20 @@ class ReportAnalysisUtils:
             Less than 400 words.
             """
         )
+        '''
+        ```python
+        instruction = dedent(
+            """
+            根据给定的信息，
+            1. 简要描述公司的行业，
+            2. 突出核心优势和竞争优势的关键产品或服务，
+            3. 确定影响公司战略的当前行业趋势、机会和挑战，
+            4. 概述最近的战略举措，如产品发布、收购或新合作伙伴关系，并描述公司对市场状况的响应。
+            字数少于400字。
+            """
+        )
+        ```
+        '''
         step_prompt = combine_prompt(instruction, section_text, "")
         instruction2 = "Summarize the analysis, less than 130 words."
         prompt = combine_prompt(instruction=instruction2, resource=step_prompt)
@@ -285,6 +456,14 @@ class ReportAnalysisUtils:
         """
         return key financial data used in annual report for the given ticker symbol and filing date
         """
+        #chinese
+        '''
+        ```python
+        """
+        返回用于年度报告的给定股票代码和提交日期的关键财务数据
+        """
+        ```
+        '''
 
         if not isinstance(filing_date, datetime):
             filing_date = datetime.strptime(filing_date, "%Y-%m-%d")

@@ -57,6 +57,42 @@ class ReportLabUtils:
         Aggregate a company's income summarization, business highlights, company description,
         risk assessment and share performance, PE & EPS performance charts all into a PDF report.
         """
+        
+        # chinese 
+        '''
+        ```python
+        def build_annual_report(
+            ticker_symbol: Annotated[str, "股票代码"],
+            save_path: Annotated[str, "保存年度报告PDF的路径"],
+            income_summarization: Annotated[
+                str,
+                "一个段落的文本：公司财务报告中的收入总结",
+            ],
+            business_highlights: Annotated[
+                str,
+                "一个段落的文本：公司财务报告中的业务亮点",
+            ],
+            company_description: Annotated[
+                str,
+                "一个段落的文本：公司财务报告中的公司描述和当前情况",
+            ],
+            risk_assessment: Annotated[
+                str,
+                "一个段落的文本：公司财务报告中的风险评估",
+            ],
+            share_performance_image_path: Annotated[
+                str, "股票表现图片的路径"
+            ],
+            pe_eps_performance_image_path: Annotated[
+                str, "市盈率和每股收益表现图片的路径"
+            ],
+            filing_date: Annotated[str, "所分析财务报告的提交日期"],
+        ) -> str:
+            """
+            将公司的收入总结、业务亮点、公司描述、风险评估、股票表现、市盈率和每股收益表现图表全部汇总成PDF报告。
+            """
+        ```
+        '''
         try:
             # 2. 创建PDF并插入图像
             # 页面设置

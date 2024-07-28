@@ -3,7 +3,7 @@ from typing import Annotated, Callable, Any, Optional
 from pandas import DataFrame
 from functools import wraps
 
-from ..utils import save_output, SavePathType, decorate_all_methods
+from finrobot.utils import save_output, SavePathType, decorate_all_methods
 
 
 def init_ticker(func: Callable) -> Callable:
@@ -32,6 +32,9 @@ class YFinanceUtils:
     ) -> DataFrame:
         """retrieve stock price data for designated ticker symbol"""
         ticker = symbol
+        print(ticker)
+        # get all stock info
+        print(ticker.info)
         stock_data = ticker.history(start=start_date, end=end_date)
         save_output(stock_data, f"Stock data for {ticker.ticker}", save_path)
         return stock_data
@@ -112,5 +115,5 @@ class YFinanceUtils:
 
 
 if __name__ == "__main__":
-    print(YFinanceUtils.get_stock_data("AAPL", "2021-01-01", "2021-12-31"))
+    print(YFinanceUtils.get_stock_data("MSFT", "2021-01-01", "2021-12-31"))
     # print(YFinanceUtils.get_stock_data())

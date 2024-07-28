@@ -9,6 +9,8 @@ from functools import wraps
 from datetime import datetime
 from ..utils import decorate_all_methods, save_output, SavePathType
 
+# https://github.com/Finnhub-Stock-API/finnhub-python
+# https://finnhub.io/docs/api/introduction
 
 def init_finnhub_client(func):
     @wraps(func)
